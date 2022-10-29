@@ -76,12 +76,12 @@ $("body").ready(function () {
 
     //search events
 
-    $("section.mainPage .row.search #searchByLetter").keyup(function () {
+    $("div.row.search #searchByLetter").keyup(function () {
         this.maxLength = 1;
         searchByletter($(this).val());
     })
 
-    $("section.mainPage .row.search #searchByName").keyup(function () {
+    $(" div.row.search #searchByName").keyup(function () {
         searchByName($(this).val());
     })
 
@@ -106,7 +106,7 @@ $("body").ready(function () {
 /*Main function
 ** we will use this to move from section to another*/
 let divContact = $(".contact");
-let divSearch = $("section.mainPage .row.search");
+let divSearch = $("div.row.search");
 function goHome() {
     checkContact();
     checkSearch();
@@ -203,9 +203,19 @@ function checkApi(arrJasonApi) {
 // globel variabels for functions 
 const foodItemsDiv = document.querySelector('section.container.mainPage .row.mainShow');
 function getApiArr(linkApi, displayFunction) {
+    $(".waitingLayerApi").show(10,function(){
+    
+        $(this).removeClass("d-none");
+    
+        } )
     fetch(linkApi)
         .then((response) => response.json())
-        .then((data) => arrJasonApi = data).then(displayFunction);
+    .then((data) => arrJasonApi = data).then(displayFunction);
+    $(".waitingLayerApi").fadeOut(1000,function(){
+    
+    $(this).addClass('d-none');
+
+    })
 
 }
 function getCategory(Category) {
