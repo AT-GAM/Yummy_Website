@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yummy</title>
+    <link rel="stylesheet" href="Css/all.css">
+    <link rel="stylesheet" href="Css/bootstrap.min.css">
+    <link rel="stylesheet" href="Css/all.css">
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="icon" href="Images/logo.png">
+
+</head>
+
+<body class="bg-black">
+    <!---------------------------------------Waiting Layer------------------------------------------------>
+    <div class="waitingLayer bg-black position-fixed top-0  bottom-0 start-0 end-0 d-flex justify-content-center align-items-center ">
+        <i class="fa-solid fa-spinner fa-spin-pulse fa-3x text-white"></i>
+   
+   
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!---------------------------------------NavBar------------------------------------------------>
+
+    <nav   class="  position-fixed  start-0 navbar-dark bottom-0 top-0 text-white disappear d-flex   ">
+        <div style="width: 0px;" class=" disappear   h-100 bg-black d-flex justify-content-between flex-column   flex-wrap ">
+            <ul class="list-unstyled text-center mt-5 w-100  ">
+                <li class="mb-4">
+                    <a class="fa-1x" id="Home" href="#">Home</a>
+                </li>
+                <li class="mb-4">
+                    <a class="fa-1x" id="Search" href="#">Search</a>
+                </li>
+                <li class="mb-4">
+                    <a class="fa-1x" id="Category" href="#">Categories</a>
+                </li>
+                <li class="mb-4">
+                    <a class="fa-1x" id="Area" href="#">Area</a>
+                </li>
+                <li class="mb-4">
+                    <a class="fa-1x" id="ingredients" href="#">Ingredients</a>
+                </li>
+                
+                <li class="mb-4">
+                    <a class="fa-1x" id="Contact" href="#">Contact Us</a>
+                </li>
+
+            </ul>
+            <div  class="endOfNavBar  w-100  text-center ">
+                <div class="SocialIcons  my-3 d-flex justify-content-center ">
+                    <div style="width:30px ; height: 30px;" class="rounded-circle bg-secondary d-flex justify-content-center align-items-center ">
+                    <i class="fa-brands text-white fa-facebook-f"></i>
+
+
+                </div>
+                <div style="width:30px ; height: 30px;" class="rounded-circle bg-secondary d-flex justify-content-center align-items-center ">
+                    <i class="fa-brands text-white fa-twitter"></i>
+
+
+                </div>
+                <div style="width:30px ; height: 30px;" class="rounded-circle bg-secondary d-flex justify-content-center align-items-center ">
+                    <i class="fa-solid text-white fa-globe "></i>
+
+
+                </div>
+            </div class="w-100">
+
+
+                <p >Copyright Â© 2019 All Rights Reserved.   </p>
+            </div>
+        </div>
+
+        <div style="width: 50px;" class=" h-100 bg-white  appear ">
+            <div class="d-flex justify-content-between  align-items-center   py-2      flex-column w-100 h-100">
+                <img src="Images/logo.png" class="w-75" alt="Website logo">
+                <div class="openIcons">
+                    <span class="text-black fa-2x ">☰</span>
+                    <i class="fa-solid fa-xmark text-black fa-2x d-none " ></i>
+                
+
+                </div>
+                <div class="shareIcon w-100 d-flex justify-content-center  align-items-center flex-column">
+                    <i class="fa-sharp fa-solid fa-globe fa-1x  mb-2 text-black"></i>
+                    <i class="fa-solid fa-share-nodes fa-1x text-black"></i>
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+    </nav>
+    <section class="mainPage w-75  my-5  container">
+        <div class="search row text-center d-none">
+             <div class=" col-sm-6">    
+                    <input type="text" id="searchByName" placeholder="Search By Name"
+                        class="form-control me-2 my-2 text-center text-white  bg-black">  
+            </div>
+            <div class=" col-sm-6">
+                    <input type="text" id="searchByLetter" placeholder="Search By letter"
+                        class="form-control me-2 my-2  text-center text-white bg-black">
+            </div>
+        </div>
+        
+    <div class="row mainShow ">
+        
+        
+        
+    </div>
+    
+    </section>
+    <!-------------------------------------------------CONTACT----------------------------------------------------------->
+    <form class="contact d-none container text-white text-center w-50">
+        <h2>Contact Us</h2>
+        <div class="row ">
+    
+            <div class=" col-sm-6">
+                <div class="d-flex flex-column">
+    
+                    <input type="text" id="firstName" placeholder="Enter Your Name"
+                        class="form-control me-2 my-2 text-center text-white  bg-black">
+                    <p class="bg-danger d-none p-2">Special Characters and Numbers not allowed </p>
+                </div>
+            </div>
+            <div class=" col-sm-6">
+                <div class="d-flex flex-column ">
+    
+                    <input type="text" id="Email" placeholder="Enter Your Email"
+                        class="form-control  me-2 my-2  text-center text-white bg-black">
+                    <p class="bg-danger d-none p-2">Enter valid email. *Ex: xxx@yyy.zzz</p>
+                </div>
+            </div>
+            <div class=" col-sm-6">
+                <div class="d-flex flex-column">
+    
+                    <input type="text" id="firstName" placeholder="Enter Your Phone"
+                        class="form-control me-2 my-2 text-center text-white  bg-black">
+                    <p class="bg-danger d-none p-2">Enter valid Phone Number                    </p>
+                </div>
+            </div>
+            <div class=" col-sm-6">
+                <div class="d-flex  flex-column ">
+    
+                    <input type="text" id="Email" placeholder="Enter Your Age"
+                        class="form-control me-2 my-2  text-center text-white bg-black">
+                    <p class="bg-danger d-none p-2">Enter valid Age                    </p>
+                </div>
+            </div>
+            <div class=" col-sm-6">
+                <div class="d-flex flex-column">
+    
+                    <input type="text" id="firstName" placeholder="Enter Your Repassword"
+                        class="form-control me-2 my-2 text-center text-white  bg-black">
+                    <p class="bg-danger d-none p-2">Enter valid Repassword </p>
+                </div>
+            </div>
+            <div class=" col-sm-6">
+                <div class="d-flex flex-column ">
+    
+                    <input type="text" id="Email" placeholder="Enter Your password"
+                        class="form-control me-2 my-2  text-center text-white bg-black">
+                    <p class="bg-danger d-none p-2">Enter valid password *Minimum eight characters, at least one letter and one number:* </p>
+                    </div>
+            </div>
+    
+        </div>
+        <div class="col-12 text-center">
+        <button type="button" class="btn  btn-outline-danger "> Submit</button>
+    </div>
+    </form>
+
+    <script src="js/jquery-3.6.1.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

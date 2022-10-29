@@ -1,0 +1,57 @@
+:root{
+    --primiaryFontSize:30px;
+    --primiaryColor : white ;
+    --secondryColor : #E5633E ;
+
+}
+html{
+    scroll-behavior: smooth;
+
+
+}
+/* ---------------------------------------Waiting Layer------------------------------------------------*/
+.waitingLayer{
+    z-index: 99999999;
+}
+
+
+
+
+/* ---------------------------------------NavBar------------------------------------------------ */
+
+
+nav{
+    z-index: 999;
+}
+nav ul a{
+    text-decoration: none;
+    color: var(--primiaryColor);
+}
+
+nav   a:hover {
+    color: var(--primiaryColor) ;
+}
+nav .appear .openIcons span,nav .appear .openIcons  i{
+    cursor: pointer;
+}
+
+/* Main page */
+/* ---------------------------------------figure caption------------------------------------------------ */
+
+section.mainPage figure figcaption{
+    position: absolute;
+    top: 150%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+    transition: 1s  all  ;
+
+}
+section.mainPage figure:hover figcaption{
+    top:0;
+
+}
+/* cursor in the post and figure */
+section .post , section figure{
+    cursor: pointer;
+}
