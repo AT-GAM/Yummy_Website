@@ -385,7 +385,7 @@ function displayIngredient(arrJasonApi) {
         const foodDiv = `
             
         <div class="col-sm-6  overflow-hidden text-center col-lg-3 my-3 ">
-        <div style="height:300px "  onclick="getByIngredient('${arrJasonApi.meals[i].strIngredient}')" class="movie shadow rounded-2 border border-2 border-white  position-relative">
+        <div style="height:300px "  onclick="getByIngredient('${arrJasonApi.meals[i].strIngredient}')" class="movie position-relative">
             <div class="post ">
                 <i class="fa-solid text-warning  fa-utensils mt-2 fa-3x"></i>
                 <h2 class="text-white">${arrJasonApi.meals[i].strIngredient}</h2>
@@ -467,7 +467,7 @@ let ageRegax = new RegExp('^\S[0-9]{0,3}$');
 
 let inputs = $(".contact .row input");
 let paraError = $(".contact .row p");
-inputs.keyup(function () {
+$(".contact").keyup(function () {
     let flag = false;
     if (!$(inputs[0]).val() === "") {
         if (nameRegax.test($(inputs[0]).val())) {
