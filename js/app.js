@@ -381,15 +381,15 @@ function displayIngredient(arrJasonApi) {
     let collection = "";
 
 
-    for (const meal of arrJasonApi.meals) {
+    for (let i =0 ; i<21 ; i++) {
         const foodDiv = `
             
         <div class="col-sm-6  overflow-hidden text-center col-lg-3 my-3 ">
-        <div style="height:300px "  onclick="getByIngredient('${meal.strIngredient}')" class="movie shadow rounded-2 border border-2 border-white  position-relative">
+        <div style="height:300px "  onclick="getByIngredient('${arrJasonApi.meals[i].strIngredient}')" class="movie shadow rounded-2 border border-2 border-white  position-relative">
             <div class="post ">
                 <i class="fa-solid text-warning  fa-utensils mt-2 fa-3x"></i>
-                <h2 class="text-white">${meal.strIngredient}</h2>
-                <p class="text-white">${(meal.strDescription) ? `${meal.strDescription}` : ""} </p>
+                <h2 class="text-white">${arrJasonApi.meals[i].strIngredient}</h2>
+                <p class="text-white">${(arrJasonApi.meals[i].strDescription) ? `${arrJasonApi.meals[i].strDescription}` : ""} </p>
             </div>
         </div>
     </div>   
