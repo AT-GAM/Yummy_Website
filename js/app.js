@@ -524,8 +524,8 @@ function checkSubmitButton(){
 function checkNameInput(){
         if (nameRegax.test($(inputs[0]).val())) {
 
-            $(inputs[0]).removeClass("border-danger");
-            $(inputs[0]).addClass("border-success");
+            $(inputs[0]).removeClass("is-invalid");
+            $(inputs[0]).addClass("is-valid");
             if (!$(paraError[0]).hasClass(`d-none`)) {
                 $(paraError[0]).addClass("d-none");
             }
@@ -533,7 +533,7 @@ function checkNameInput(){
 
         }
         else {
-            $(inputs[0]).addClass("border-danger");
+            $(inputs[0]).addClass("is-invalid");
             $(paraError[0]).removeClass("d-none");
         }
         return false;
@@ -544,8 +544,8 @@ function checkNameInput(){
 
 function checkEmailInput(){
         if (emailRegax.test($(inputs[1]).val())) {
-            $(inputs[1]).removeClass("border-danger");
-            $(inputs[1]).addClass("border-success");
+            $(inputs[1]).removeClass("is-invalid");
+            $(inputs[1]).addClass("is-valid");
           if (!$(paraError[1]).hasClass(`d-none`)) {
                 $(paraError[1]).addClass("d-none");
             }
@@ -553,7 +553,7 @@ function checkEmailInput(){
 
         }
         else {
-            $(inputs[1]).addClass("border-danger");
+            $(inputs[1]).addClass("is-invalid");
             if ($(paraError[1]).hasClass(`d-none`)) {
                 $(paraError[1]).removeClass("d-none");
             }
@@ -566,8 +566,8 @@ function checkPhoneInput(){
     
     if (phoneRegax.test($(inputs[2]).val())) {
 
-        $(inputs[2]).removeClass("border-danger")
-        $(inputs[2]).addClass("border-success");
+        $(inputs[2]).removeClass("is-invalid")
+        $(inputs[2]).addClass("is-valid");
         if (!$(paraError[2]).hasClass(`d-none`)) {
             $(paraError[2]).addClass("d-none");
         }
@@ -575,7 +575,7 @@ function checkPhoneInput(){
 
     }
     else {
-        $(inputs[2]).addClass("border-danger");
+        $(inputs[2]).addClass("is-invalid");
         if ($(paraError[2]).hasClass(`d-none`)) {
             $(paraError[2]).removeClass("d-none");
         }
@@ -585,8 +585,8 @@ function checkPhoneInput(){
 function checkAgeInput(){
     if (ageRegax.test($(inputs[3]).val())) {
 
-        $(inputs[3]).removeClass("border-danger");
-         $(inputs[3]).addClass("border-success");
+        $(inputs[3]).removeClass("is-invalid");
+         $(inputs[3]).addClass("is-valid");
         if (!$(paraError[3]).hasClass(`d-none`)) {
             $(paraError[3]).addClass("d-none");
         }
@@ -594,7 +594,7 @@ function checkAgeInput(){
 
     }
     else {
-        $(inputs[3]).addClass("border-danger");
+        $(inputs[3]).addClass("is-invalid");
         if ($(paraError[3]).hasClass(`d-none`)) {
             $(paraError[3]).removeClass("d-none");
         }
@@ -604,8 +604,8 @@ function checkAgeInput(){
 function checkPasswordInput(){
     if (passwordRegax.test($(inputs[4]).val())) {
 
-                $(inputs[4]).removeClass("border-danger");
-                $(inputs[4]).addClass("border-success");
+                $(inputs[4]).removeClass("is-invalid");
+                $(inputs[4]).addClass("is-valid");
                 if (!$(paraError[4]).hasClass(`d-none`)) {
                     $(paraError[4]).addClass("d-none");
                 }
@@ -613,7 +613,7 @@ function checkPasswordInput(){
     
             }
             else {
-                $(inputs[4]).addClass("border-danger");
+                $(inputs[4]).addClass("is-invalid");
                 if ($(paraError[4]).hasClass(`d-none`)) {
                     $(paraError[4]).removeClass("d-none");
                 }
@@ -624,8 +624,8 @@ function checkPasswordInput(){
 function checkRepasswordInput(){
     if ($(inputs[4]).val() == $(inputs[5]).val()) {
 
-        $(inputs[5]).removeClass("border-danger")
-        $(inputs[5]).addClass("border-success");
+        $(inputs[5]).removeClass("is-invalid")
+        $(inputs[5]).addClass("is-valid");
         if (!$(paraError[5]).hasClass(`d-none`)) {
             $(paraError[5]).addClass("d-none");
         }
@@ -634,7 +634,7 @@ function checkRepasswordInput(){
     }
 
     else {
-        $(inputs[5]).addClass("border-danger");
+        $(inputs[5]).addClass("is-invalid");
         if ($(paraError[5]).hasClass(`d-none`)) {
             $(paraError[5]).removeClass("d-none");
         }
