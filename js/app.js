@@ -459,37 +459,97 @@ function searchByName(searchValue) {
 }
 /* validation of contacts */
 // Regax variable
-let nameRegax = new RegExp('^[a-zA-Z]+\.[a-zA-Z]{4,10}^');
-let emailRegax = new RegExp(`^[a-zA-Z0-9.!#$%&'*+/=?^_{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$`);
-let phoneRegax = new RegExp('(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"');
-let passwordRegax = new RegExp('^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$');
-let ageRegax = new RegExp('^\S[0-9]{0,3}$');
+const nameRegax = /^[a-zA-Z ]{3,30}$/;
+const emailRegax = /^[a-zA-Z0-9.!#$%&'*+/=?^_{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+const phoneRegax = /^(01|201|\+201)[0125][0-9]{8}$/;
+const passwordRegax = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+const ageRegax = /^([1-9]|[1-9][0-9]|100)$/;
+let flagButton = false;
+
 
 let inputs = $(".contact .row input");
 let paraError = $(".contact .row p");
 $(".contact").keyup(function () {
-    let flag = false;
-    if (!$(inputs[0]).val() === "") {
+    if (!$(inputs[0]).val() == "") {
+        checkNameInput();}
+
+
+     if (!$(inputs[1]).val() == "") {
+        checkEmailInput();} 
+    
+        if (!$(inputs[2]).val() == "") {
+            checkPhoneInput();} 
+        
+     if (!$(inputs[3]).val() == "") {
+        checkAgeInput();} 
+    
+        if (!$(inputs[4]).val() == "") {
+            checkPasswordInput();} 
+            
+     if (!$(inputs[5]).val() == "") {
+        checkRepasswordInput();} 
+       
+       
+       
+       
+        let submitButton = 
+        $("button.btn.Submit.btn-outline-danger");
+
+
+    if ( submitButton.hasClass("disabled")&&chechEmpty()){
+        if(checkSubmitButton() ){
+        submitButton.removeClass("disabled");
+        }
+    
+    else{
+        submitButton.addClass("disabled")
+
+
+    }
+    }
+
+   
+})
+function chechEmpty() {
+    
+    return( !$(inputs[0]).val() == ""&&!$(inputs[1]).val() == ""&&!$(inputs[2]).val() == ""&&!$(inputs[3]).val() == ""&&!$(inputs[4]).val() == ""&&!$(inputs[5]).val() == "")
+}
+function checkSubmitButton(){
+    return (checkAgeInput() && checkEmailInput() && checkNameInput() && checkPasswordInput() && checkPhoneInput() && checkRepasswordInput())
+}
+
+
+
+// validation check
+function checkNameInput(){
         if (nameRegax.test($(inputs[0]).val())) {
 
-            $(inputs[0]).replaceClass("border-danger", "border-success");
+            $(inputs[0]).removeClass("border-danger");
+            $(inputs[0]).addClass("border-success");
             if (!$(paraError[0]).hasClass(`d-none`)) {
                 $(paraError[0]).addClass("d-none");
             }
+            return true;
 
         }
         else {
             $(inputs[0]).addClass("border-danger");
             $(paraError[0]).removeClass("d-none");
         }
-    }
-    if (!$(inputs[1]).val() === "") {
-        if (emailRegax.test($(inputs[1]).val())) {
+        return false;
+    
+   
 
-            $(inputs[1]).replaceClass("border-danger", "border-success");
-            if (!$(paraError[1]).hasClass(`d-none`)) {
+}
+
+function checkEmailInput(){
+        if (emailRegax.test($(inputs[1]).val())) {
+            $(inputs[1]).removeClass("border-danger");
+            $(inputs[1]).addClass("border-success");
+          if (!$(paraError[1]).hasClass(`d-none`)) {
                 $(paraError[1]).addClass("d-none");
             }
+            return true; 
 
         }
         else {
@@ -497,93 +557,91 @@ $(".contact").keyup(function () {
             if ($(paraError[1]).hasClass(`d-none`)) {
                 $(paraError[1]).removeClass("d-none");
             }
+            return false;
         }
-    }
+    
 
+}
+function checkPhoneInput(){
+    
+    if (phoneRegax.test($(inputs[2]).val())) {
 
-    if (!$(inputs[2]).val() === "") {
-
-        if (phoneRegax.test($(inputs[2]).val())) {
-
-            $(inputs[2]).replaceClass("border-danger", "border-success");
-            if (!$(paraError[2]).hasClass(`d-none`)) {
-                $(paraError[2]).addClass("d-none");
-            }
-
+        $(inputs[2]).removeClass("border-danger")
+        $(inputs[2]).addClass("border-success");
+        if (!$(paraError[2]).hasClass(`d-none`)) {
+            $(paraError[2]).addClass("d-none");
         }
-        else {
-            $(inputs[2]).addClass("border-danger");
-            if ($(paraError[2]).hasClass(`d-none`)) {
-                $(paraError[2]).removeClass("d-none");
-            }
-        }
-    }
-
-    if (!$(inputs[3]).val() === "") {
-
-        if (ageRegax.test($(inputs[3]).val())) {
-
-            $(inputs[3]).replaceClass("border-danger", "border-success");
-            if (!$(paraError[3]).hasClass(`d-none`)) {
-                $(paraError[3]).addClass("d-none");
-            }
-
-        }
-        else {
-            $(inputs[3]).addClass("border-danger");
-            if ($(paraError[3]).hasClass(`d-none`)) {
-                $(paraError[3]).removeClass("d-none");
-            }
-        }
-    }
-
-    if (!$(inputs[4]).val() === "") {
-
-        if (passwordRegax.test($(inputs[4]).val())) {
-
-            $(inputs[4]).replaceClass("border-danger", "border-success");
-            if (!$(paraError[4]).hasClass(`d-none`)) {
-                $(paraError[4]).addClass("d-none");
-            }
-
-        }
-        else {
-            $(inputs[4]).addClass("border-danger");
-            if ($(paraError[4]).hasClass(`d-none`)) {
-                $(paraError[4]).removeClass("d-none");
-            }
-        }
-    }
-    if (!$(inputs[5]).val() === "") {
-
-        if ($(inputs[4]).val() === $(inputs[5]).val()) {
-
-            $(inputs[5]).replaceClass("border-danger", "border-success");
-            if (!$(paraError[5]).hasClass(`d-none`)) {
-                $(paraError[5]).addClass("d-none");
-            }
-
-        }
-
-        else {
-            $(inputs[5]).addClass("border-danger");
-            if ($(paraError[5]).hasClass(`d-none`)) {
-                $(paraError[5]).removeClass("d-none");
-            }
-        }
-
+        return true; 
 
     }
+    else {
+        $(inputs[2]).addClass("border-danger");
+        if ($(paraError[2]).hasClass(`d-none`)) {
+            $(paraError[2]).removeClass("d-none");
+        }
+        return false;
+    }
+}
+function checkAgeInput(){
+    if (ageRegax.test($(inputs[3]).val())) {
 
-})
+        $(inputs[3]).removeClass("border-danger");
+         $(inputs[3]).addClass("border-success");
+        if (!$(paraError[3]).hasClass(`d-none`)) {
+            $(paraError[3]).addClass("d-none");
+        }
+        return true; 
 
+    }
+    else {
+        $(inputs[3]).addClass("border-danger");
+        if ($(paraError[3]).hasClass(`d-none`)) {
+            $(paraError[3]).removeClass("d-none");
+        }
+        return false;
+    }
+} 
+function checkPasswordInput(){
+    if (passwordRegax.test($(inputs[4]).val())) {
 
+                $(inputs[4]).removeClass("border-danger");
+                $(inputs[4]).addClass("border-success");
+                if (!$(paraError[4]).hasClass(`d-none`)) {
+                    $(paraError[4]).addClass("d-none");
+                }
+                return true; 
+    
+            }
+            else {
+                $(inputs[4]).addClass("border-danger");
+                if ($(paraError[4]).hasClass(`d-none`)) {
+                    $(paraError[4]).removeClass("d-none");
+                }
+                return false;
+            }
+    
+}
+function checkRepasswordInput(){
+    if ($(inputs[4]).val() == $(inputs[5]).val()) {
 
+        $(inputs[5]).removeClass("border-danger")
+        $(inputs[5]).addClass("border-success");
+        if (!$(paraError[5]).hasClass(`d-none`)) {
+            $(paraError[5]).addClass("d-none");
+        }
+        return true; 
 
+    }
 
+    else {
+        $(inputs[5]).addClass("border-danger");
+        if ($(paraError[5]).hasClass(`d-none`)) {
+            $(paraError[5]).removeClass("d-none");
+        }
+        return false;
+    }
 
-
-
+}
 
 
 
