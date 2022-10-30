@@ -2,6 +2,7 @@
     --primiaryFontSize:30px;
     --primiaryColor : white ;
     --secondryColor : #E5633E ;
+    
 
 }
 html{
@@ -55,6 +56,9 @@ section.mainPage figure figcaption{
     right: 0%;
     transition: 1s  all  ;
 
+}
+figcaption h4{
+    font-weight:bold ;
 }
 section.mainPage figure:hover figcaption{
     top:0;

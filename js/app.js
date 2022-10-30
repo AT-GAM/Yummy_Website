@@ -108,6 +108,7 @@ $("body").ready(function () {
 let divContact = $(".contact");
 let divSearch = $("div.row.search");
 function goHome() {
+    foodItemsDiv.innerHTML = "";
     checkContact();
     checkSearch();
     linkApi = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
@@ -116,6 +117,7 @@ function goHome() {
 
 }
 function goSearch() {
+    foodItemsDiv.innerHTML = "";
     checkContact();
     divSearch.removeClass("d-none");
     document.querySelector('section.container.mainPage .row.mainShow').innerHTML = ""
@@ -124,6 +126,7 @@ function goSearch() {
 
 }
 function goCategories() {
+    foodItemsDiv.innerHTML = "";
     checkContact();
     checkSearch();
     linkApi = "https://www.themealdb.com/api/json/v1/1/categories.php";
@@ -133,6 +136,7 @@ function goCategories() {
 
 }
 function goArea() {
+    foodItemsDiv.innerHTML = "";
     checkContact();
     checkSearch();
     linkApi = "https://www.themealdb.com/api/json/v1/1/list.php?a=list";
@@ -142,6 +146,7 @@ function goArea() {
 
 }
 function goIngredient() {
+    foodItemsDiv.innerHTML = "";
     checkContact();
     checkSearch();
     linkApi = "https://www.themealdb.com/api/json/v1/1/list.php?i=list";
@@ -151,6 +156,7 @@ function goIngredient() {
 }
 
 function goContact() {
+    foodItemsDiv.innerHTML = "";
     checkSearch();
     divContact.removeClass("d-none")
     document.querySelector('section.container.mainPage .row.mainShow').innerHTML = ""
@@ -203,7 +209,7 @@ function checkApi(arrJasonApi) {
 // globel variabels for functions 
 const foodItemsDiv = document.querySelector('section.container.mainPage .row.mainShow');
 function getApiArr(linkApi, displayFunction) {
-    $(".waitingLayerApi").show(10,function(){
+    $(".waitingLayerApi").show(0,function(){
     
         $(this).removeClass("d-none");
     
@@ -211,7 +217,7 @@ function getApiArr(linkApi, displayFunction) {
     fetch(linkApi)
         .then((response) => response.json())
     .then((data) => arrJasonApi = data).then(displayFunction);
-    $(".waitingLayerApi").fadeOut(1000,function(){
+    $(".waitingLayerApi").fadeOut(1500,function(){
     
     $(this).addClass('d-none');
 
@@ -289,8 +295,7 @@ function getMeal(idMeal) {
 
 
         //build html code 
-        foodItemsDiv.innerHTML = "";
-        foodItemsDiv.innerHTML = `<div class="col-md-4 col-sm-12 text-white text-center " >
+            foodItemsDiv.innerHTML = `<div class="col-md-4 col-sm-12 text-white text-center " >
             <img class="w-100" src="${meal.strMealThumb}" alt="${meal.strMeal}  ">
             <h2>   ${meal.strMeal}            </h2>
 
@@ -327,7 +332,6 @@ function getMeal(idMeal) {
 
 function displayFoods(arrJasonApi) {
 
-    foodItemsDiv.innerHTML = "";
     let collection = "";
 
 
@@ -336,7 +340,7 @@ function displayFoods(arrJasonApi) {
         <div class="col-lg-3 col-md-4 col-sm-6 ">
         <figure onclick="getMeal(${meal.idMeal})" class="figure position-relative  overflow-hidden    ">
             <img src="${meal.strMealThumb}" class="figure-img img-fluid rounded m-0" alt="${meal.strMeal}">
-            <figcaption class="figure-caption text-black bg-white bg-opacity-50 fa-2x d-flex align-items-center  ">${meal.strMeal}</figcaption>
+            <figcaption class="figure-caption text-black bg-white bg-opacity-50 fa-2x  d-flex align-items-center  "><h4>${meal.strMeal}</h4></figcaption>
           </figure>
           </div>    
         `;
@@ -348,7 +352,6 @@ function displayFoods(arrJasonApi) {
 }
 function displayCatagories(arrJasonApi) {
 
-    foodItemsDiv.innerHTML = "";
     let collection = "";
 
 
@@ -379,17 +382,16 @@ function displayCatagories(arrJasonApi) {
 }
 function displayIngredient(arrJasonApi) {
 
-    foodItemsDiv.innerHTML = "";
     let collection = "";
 
 
     for (const meal of arrJasonApi.meals) {
         const foodDiv = `
             
-        <div style="height:300px " class="col-sm-6  overflow-hidden text-center col-lg-3 my-3 ">
-        <div onclick="getByIngredient('${meal.strIngredient}')" class="movie shadow rounded position-relative">
+        <div class="col-sm-6  overflow-hidden text-center col-lg-3 my-3 ">
+        <div style="height:300px "  onclick="getByIngredient('${meal.strIngredient}')" class="movie shadow rounded-2 border border-2 border-white  position-relative">
             <div class="post ">
-                <i class="fa-solid text-success fa-bowl-food fa-3x"></i>
+                <i class="fa-solid text-warning  fa-utensils mt-2 fa-3x"></i>
                 <h2 class="text-white">${meal.strIngredient}</h2>
                 <p class="text-white">${(meal.strDescription) ? `${meal.strDescription}` : ""} </p>
             </div>
@@ -405,17 +407,16 @@ function displayIngredient(arrJasonApi) {
 
 function displayArea(arrJasonApi) {
 
-    foodItemsDiv.innerHTML = "";
     let collection = "";
 
 
     for (const meal of arrJasonApi.meals) {
         const foodDiv = `
             
-        <div class="col-sm-6 text-center  col-lg-3 my-3 myM  shadow">
-            <div class="  rounded ">
-                <div onclick="getByArea('${meal.strArea}')" class="post ">
-                    <i class="fa-solid text-danger fa-city fa-3x"></i>
+        <div   class="col-sm-6 text-center col-lg-3 my-3">
+            <div  style="height:250px " onclick="getByArea('${meal.strArea}')"  class=" rounded-2 d-flex justify-content-center align-items-center border-3 border border-white py-3 ">
+                <div  class="post ">
+                    <i class=" fa-solid fa-earth-africa text-info mb-2  fa-3x"></i>
                     <h2 class="text-white">${meal.strArea}</h2>
                 </div>
             </div>
