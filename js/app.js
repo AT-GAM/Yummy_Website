@@ -29,6 +29,7 @@ $("body").ready(function () {
 
     // first we have to hide waitingLayer
     $(".waitingLayer").addClass("d-none");
+    $("nav").removeClass("d-none")
 
 
 
@@ -191,12 +192,7 @@ function checkSearch() {
 
     }
 }
-function checkApi(arrJasonApi) {
-    if (!arrJasonApi.meal && !arrJasonApi.categories) {
-        return false;
-    }
 
-}
 
 
 
