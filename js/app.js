@@ -359,7 +359,7 @@ function displayCatagories(arrJasonApi) {
 
             <figcaption class="figure-caption text-black bg-white bg-opacity-50  text-center fa-1x  ">
             <h4>${Category.strCategory}</h4>
-            <p class="w-100">${Category.strCategoryDescription}</p>
+            <p class="w-100">${Category.strCategoryDescription.split(" ").slice(0, 20).join(" ")}</p>
             
             </figcaption>
 
@@ -389,7 +389,7 @@ function displayIngredient(arrJasonApi) {
             <div class="post ">
                 <i class="fa-solid text-warning  fa-utensils mt-2 fa-3x"></i>
                 <h2 class="text-white">${arrJasonApi.meals[i].strIngredient}</h2>
-                <p class="text-white">${(arrJasonApi.meals[i].strDescription) ? `${arrJasonApi.meals[i].strDescription}` : ""} </p>
+                <p class="text-white">${(arrJasonApi.meals[i].strDescription) ? `${arrJasonApi.meals[i].strDescription.split(" ").slice(0, 20).join(" ")}` : ""} </p>
             </div>
         </div>
     </div>   
@@ -470,24 +470,50 @@ let flagButton = false;
 let inputs = $(".contact .row input");
 let paraError = $(".contact .row p");
 $(".contact").keyup(function () {
-    if (!$(inputs[0]).val() == "") {
+    $(inputs[0]).focusout(
+        function(){
+            this.type="text";
+            if (!$(inputs[0]).val() == "") {
         checkNameInput();}
+    })
 
 
-     if (!$(inputs[1]).val() == "") {
-        checkEmailInput();} 
-    
+    $(inputs[1]).focusout(function () {
+        if (!$(inputs[1]).val() == "") {
+            this.type="email";
+            checkEmailInput();
+        }
+    })
+
+    $(inputs[2]).focusout(function () {
+        this.type="number";
         if (!$(inputs[2]).val() == "") {
-            checkPhoneInput();} 
-        
-     if (!$(inputs[3]).val() == "") {
-        checkAgeInput();} 
-    
+            checkPhoneInput();
+        }
+    })
+
+    $(inputs[3]).focusout(function () {
+        this.type="number";
+        if (!$(inputs[3]).val() == "") {
+            checkAgeInput();
+        }
+    })
+
+    $(inputs[4]).focusout(function () {
+        this.type="password";
+
         if (!$(inputs[4]).val() == "") {
-            checkPasswordInput();} 
-            
-     if (!$(inputs[5]).val() == "") {
-        checkRepasswordInput();} 
+            checkPasswordInput();
+        }
+    })
+
+    $(inputs[5]).focusout(function () {
+        this.type="password";
+
+        if (!$(inputs[5]).val() == "") {
+            checkRepasswordInput();
+        }
+    })
        
        
        

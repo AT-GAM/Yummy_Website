@@ -15,6 +15,9 @@
 </head>
 
 <body class="bg-black   ">
+    <div class="bachGroundlayer position-fixed top-0 bottom-0 start-0 end-0 bg-black bg-opacity-50 ">
+
+    </div>
     <!---------------------------------------Waiting Layer------------------------------------------------>
     <div class="waitingLayer bg-black position-fixed top-0  bottom-0 start-0 end-0 d-flex justify-content-center align-items-center ">
         <i class="fa-solid fa-spinner fa-spin-pulse fa-3x text-white"></i>
@@ -130,7 +133,7 @@
     <section class="mainPage w-75  my-5 position-relative  container">
         
        
-        <div class="waitingLayerApi vh-100 d-flex  justify-content-center align-items-center   ">
+        <div class="waitingLayerApi vh-100 d-flex bg-transparent  justify-content-center align-items-center   ">
             <i class="fa-solid fa-spinner fa-spin-pulse fa-3x text-white"></i>
     
     
@@ -158,7 +161,7 @@
             <div class=" col-sm-6">
                 <div class="d-flex flex-column ">
     
-                    <input type="text" id="Email" placeholder="Enter Your Email"
+                    <input type="email" id="Email" placeholder="Enter Your Email"
                         class="form-control  me-2 my-2  text-center text-white bg-black">
                     <p class="bg-danger d-none p-2">Enter valid email. *Ex: xxx@yyy.zzz</p>
                 </div>
@@ -166,7 +169,7 @@
             <div class=" col-sm-6">
                 <div class="d-flex flex-column">
     
-                    <input type="text" id="firstName" placeholder="Enter Your Phone"
+                    <input type="number" id="firstName" placeholder="Enter Your Phone"
                         class="form-control me-2 my-2 text-center text-white  bg-black">
                     <p class="bg-danger d-none p-2">Enter valid Phone Number                    </p>
                 </div>
@@ -174,7 +177,7 @@
             <div class=" col-sm-6">
                 <div class="d-flex  flex-column ">
     
-                    <input type="text" id="Email" placeholder="Enter Your Age"
+                    <input type="number" id="Email" placeholder="Enter Your Age"
                         class="form-control me-2 my-2  text-center text-white bg-black">
                     <p class="bg-danger d-none p-2">Enter valid Age                    </p>
                 </div>
@@ -182,7 +185,7 @@
             <div class=" col-sm-6">
                 <div class="d-flex flex-column ">
     
-                    <input type="text" id="Email" placeholder="Enter Your password"
+                    <input type="password" id="Email" placeholder="Enter Your password"
                         class="form-control me-2 my-2  text-center  text-white bg-black">
                     <p class="bg-danger d-none p-2">Enter valid password *Minimum eight characters, at least one letter and one number:* </p>
                     </div>
@@ -191,7 +194,7 @@
             <div class=" col-sm-6">
                 <div class="d-flex flex-column">
     
-                    <input type="text" id="firstName" placeholder="Enter Your Repassword"
+                    <input type="password" id="firstName" placeholder="Enter Your Repassword"
                         class="form-control me-2 my-2 text-center text-white  bg-black">
                     <p class="bg-danger d-none p-2">Enter valid Repassword </p>
                 </div>
