@@ -81,26 +81,38 @@ $("body").ready(function () {
 
     $("div.row.search #searchByLetter").keyup(function () {
         this.maxLength = 1;
-        if (checkSeachInputValue(this.value) && !this.value == "") {
-            searchByletter($(this).val());
+        if (this.value == "") {
             $(pSearchErr[1]).addClass("d-none");
             $(this).removeClass("is-invalid");
         }
         else {
-            $(pSearchErr[1]).removeClass("d-none");
-            $(this).addClass("is-invalid");
+            if (checkSeachInputValue(this.value)) {
+                searchByletter($(this).val());
+                $(pSearchErr[1]).addClass("d-none");
+                $(this).removeClass("is-invalid");
+            }
+            else {
+                $(pSearchErr[1]).removeClass("d-none");
+                $(this).addClass("is-invalid");
+            }
         }
     })
 
     $(" div.row.search #searchByName").keyup(function () {
-        if (checkSeachInputValue(this.value) && !this.value == "") {
-            searchByName($(this).val());
+        if (this.value == "") {
             $(pSearchErr[0]).addClass("d-none");
             $(this).removeClass("is-invalid");
         }
         else {
-            $(pSearchErr[0]).removeClass("d-none");
-            $(this).addClass("is-invalid");
+            if (checkSeachInputValue(this.value)) {
+                searchByName($(this).val());
+                $(pSearchErr[0]).addClass("d-none");
+                $(this).removeClass("is-invalid");
+            }
+            else {
+                $(pSearchErr[0]).removeClass("d-none");
+                $(this).addClass("is-invalid");
+            }
         }
     })
 
@@ -110,7 +122,7 @@ $("body").ready(function () {
 
     // this function will be used to check the search input value
     function checkSeachInputValue(valueInput) {
-        return /^[a-zA-Z ]{0,}$/.test(valueInput);
+        return /^[a-zA-Z| ]{1,}$/.test(valueInput);
     }
 
 
