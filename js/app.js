@@ -2,7 +2,8 @@
 ** Globel Variabels { linkApi , arrJasonAp i} 
 ** main code {hide waiting layer , navbar animation  }
 **navBar links event { go home , go search , go ingredient  ,contact} 
-** function switch from section to anothe 
+** serch function and check the input value 
+** functions switch from section to anothe 
 **
 **
 */
@@ -76,21 +77,41 @@ $("body").ready(function () {
     $("#Contact").click(goContact);
 
     //search events
+    let pSearchErr = $(".search p");
 
     $("div.row.search #searchByLetter").keyup(function () {
         this.maxLength = 1;
-        searchByletter($(this).val());
+        if (checkSeachInputValue(this.value) && !this.value == "") {
+            searchByletter($(this).val());
+            $(pSearchErr[1]).addClass("d-none");
+            $(this).removeClass("is-invalid");
+        }
+        else {
+            $(pSearchErr[1]).removeClass("d-none");
+            $(this).addClass("is-invalid");
+        }
     })
 
     $(" div.row.search #searchByName").keyup(function () {
-        searchByName($(this).val());
+        if (checkSeachInputValue(this.value) && !this.value == "") {
+            searchByName($(this).val());
+            $(pSearchErr[0]).addClass("d-none");
+            $(this).removeClass("is-invalid");
+        }
+        else {
+            $(pSearchErr[0]).removeClass("d-none");
+            $(this).addClass("is-invalid");
+        }
     })
 
 
 
 
 
-
+    // this function will be used to check the search input value
+    function checkSeachInputValue(valueInput) {
+        return /^[a-zA-Z ]{0,}$/.test(valueInput);
+    }
 
 
 
@@ -199,23 +220,33 @@ function checkSearch() {
 
 /* small function to help 
 ** get API arr
-** get meal by letter 
-** search
-** get meal by ingredents */
+** get api by category
+** get api by ingrediant
+** get api by areaa
+** get api by meal
+** display food cards
+** display ingrediants
+** display Area
+** display categries
+** display meal  
+** get meal by ingredents 
+** nav bar function
+** search function
+** contact validation check and inputs events*/
 // globel variabels for functions 
 const foodItemsDiv = document.querySelector('section.container.mainPage .row.mainShow');
 function getApiArr(linkApi, displayFunction) {
-    $(".waitingLayerApi").show(0,function(){
-    
+    $(".waitingLayerApi").show(0, function () {
+
         $(this).removeClass("d-none");
-    
-        } )
+
+    })
     fetch(linkApi)
         .then((response) => response.json())
-    .then((data) => arrJasonApi = data).then(displayFunction);
-    $(".waitingLayerApi").fadeOut(1500,function(){
-    
-    $(this).addClass('d-none');
+        .then((data) => arrJasonApi = data).then(displayFunction);
+    $(".waitingLayerApi").fadeOut(1500, function () {
+
+        $(this).addClass('d-none');
 
     })
 
@@ -291,7 +322,7 @@ function getMeal(idMeal) {
 
 
         //build html code 
-            foodItemsDiv.innerHTML = `<div class="col-md-4 col-sm-12 text-white text-center " >
+        foodItemsDiv.innerHTML = `<div class="col-md-4 col-sm-12 text-white text-center " >
             <img class="w-100" src="${meal.strMealThumb}" alt="${meal.strMeal}  ">
             <h2>   ${meal.strMeal}            </h2>
 
@@ -335,7 +366,7 @@ function displayFoods(arrJasonApi) {
         const foodDiv = `
         <div class="col-lg-3 col-md-4 col-sm-6 ">
         <figure onclick="getMeal(${meal.idMeal})" class="figure position-relative  overflow-hidden    ">
-            <img src="${meal.strMealThumb}" class="figure-img img-fluid rounded m-0" alt="${meal.strMeal}">
+            <img src="${meal.strMealThumb}" class="figure-img img-fluid rounded-4  m-0" alt="${meal.strMeal}">
             <figcaption class="figure-caption text-black bg-white bg-opacity-50 fa-2x  d-flex align-items-center  "><h4>${meal.strMeal}</h4></figcaption>
           </figure>
           </div>    
@@ -355,7 +386,7 @@ function displayCatagories(arrJasonApi) {
         const foodDiv = `
         <div class="col-lg-3 col-md-4 col-sm-6 ">
         <figure onclick="getCategory('${Category.strCategory}')" class="figure position-relative  overflow-hidden    ">
-            <img src="${Category.strCategoryThumb}" class="figure-img img-fluid rounded m-0" alt="${Category.strCategory}">
+            <img src="${Category.strCategoryThumb}" class="figure-img img-fluid rounded rounded-4 m-0" alt="${Category.strCategory}">
 
             <figcaption class="figure-caption text-black bg-white bg-opacity-50  text-center fa-1x  ">
             <h4>${Category.strCategory}</h4>
@@ -381,7 +412,7 @@ function displayIngredient(arrJasonApi) {
     let collection = "";
 
 
-    for (let i =0 ; i<21 ; i++) {
+    for (let i = 0; i < 21; i++) {
         const foodDiv = `
             
         <div class="col-sm-6  overflow-hidden text-center col-lg-3 my-3 ">
@@ -410,7 +441,7 @@ function displayArea(arrJasonApi) {
         const foodDiv = `
             
         <div   class="col-sm-6 text-center col-lg-3 my-3">
-            <div  style="height:250px " onclick="getByArea('${meal.strArea}')"  class=" rounded-2 d-flex justify-content-center align-items-center border-3 border border-white py-3 ">
+            <div  style="height:250px " onclick="getByArea('${meal.strArea}')"  class=" rounded-4 d-flex justify-content-center align-items-center border-3 border border-white py-3 ">
                 <div  class="post ">
                     <i class=" fa-solid fa-earth-africa text-info mb-2  fa-3x"></i>
                     <h2 class="text-white">${meal.strArea}</h2>
@@ -424,6 +455,8 @@ function displayArea(arrJasonApi) {
 
 
 }
+/* function for nav bar */
+
 // this function hide the navbar when you click in the X icon bexuse i use it in different places i put it here
 function disappearNav() {
     disappearNavBar.animate({ width: "0px", paddingTop: "100px" }, 500, function () {
@@ -441,6 +474,7 @@ function disappearNav() {
     navOpenIcon.removeClass("d-none");
 
 }
+
 
 /* search function */
 
@@ -471,36 +505,37 @@ let inputs = $(".contact .row input");
 let paraError = $(".contact .row p");
 $(".contact").keyup(function () {
     $(inputs[0]).focusout(
-        function(){
-            this.type="text";
+        function () {
+            this.type = "text";
             if (!$(inputs[0]).val() == "") {
-        checkNameInput();}
-    })
+                checkNameInput();
+            }
+        })
 
 
     $(inputs[1]).focusout(function () {
         if (!$(inputs[1]).val() == "") {
-            this.type="email";
+            this.type = "email";
             checkEmailInput();
         }
     })
 
     $(inputs[2]).focusout(function () {
-        this.type="number";
+        this.type = "number";
         if (!$(inputs[2]).val() == "") {
             checkPhoneInput();
         }
     })
 
     $(inputs[3]).focusout(function () {
-        this.type="number";
+        this.type = "number";
         if (!$(inputs[3]).val() == "") {
             checkAgeInput();
         }
     })
 
     $(inputs[4]).focusout(function () {
-        this.type="password";
+        this.type = "password";
 
         if (!$(inputs[4]).val() == "") {
             checkPasswordInput();
@@ -508,88 +543,88 @@ $(".contact").keyup(function () {
     })
 
     $(inputs[5]).focusout(function () {
-        this.type="password";
+        this.type = "password";
 
         if (!$(inputs[5]).val() == "") {
             checkRepasswordInput();
         }
     })
-       
-       
-       
-       
-        let submitButton = 
+
+
+
+
+    let submitButton =
         $("button.btn.Submit.btn-outline-danger");
 
 
-    if ( submitButton.hasClass("disabled")&&chechEmpty()){
-        if(checkSubmitButton() ){
-        submitButton.removeClass("disabled");
+    if (submitButton.hasClass("disabled") && chechEmpty()) {
+        if (checkSubmitButton()) {
+            submitButton.removeClass("disabled");
         }
-    
-    else{
-        submitButton.addClass("disabled")
+
+        else {
+            submitButton.addClass("disabled")
 
 
+        }
     }
-    }
 
-   
+
 })
 function chechEmpty() {
-    
-    return( !$(inputs[0]).val() == ""&&!$(inputs[1]).val() == ""&&!$(inputs[2]).val() == ""&&!$(inputs[3]).val() == ""&&!$(inputs[4]).val() == ""&&!$(inputs[5]).val() == "")
+
+    return (!$(inputs[0]).val() == "" && !$(inputs[1]).val() == "" && !$(inputs[2]).val() == "" && !$(inputs[3]).val() == "" && !$(inputs[4]).val() == "" && !$(inputs[5]).val() == "")
 }
-function checkSubmitButton(){
+function checkSubmitButton() {
     return (checkAgeInput() && checkEmailInput() && checkNameInput() && checkPasswordInput() && checkPhoneInput() && checkRepasswordInput())
 }
 
 
 
 // validation check
-function checkNameInput(){
-        if (nameRegax.test($(inputs[0]).val())) {
+function checkNameInput() {
+    if (nameRegax.test($(inputs[0]).val())) {
 
-            $(inputs[0]).removeClass("is-invalid");
-            $(inputs[0]).addClass("is-valid");
-            if (!$(paraError[0]).hasClass(`d-none`)) {
-                $(paraError[0]).addClass("d-none");
-            }
-            return true;
-
+        $(inputs[0]).removeClass("is-invalid");
+        $(inputs[0]).addClass("is-valid");
+        if (!$(paraError[0]).hasClass(`d-none`)) {
+            $(paraError[0]).addClass("d-none");
         }
-        else {
-            $(inputs[0]).addClass("is-invalid");
-            $(paraError[0]).removeClass("d-none");
+        return true;
+
+    }
+    else {
+        $(inputs[0]).addClass("is-invalid");
+        $(paraError[0]).removeClass("d-none");
+    }
+    return false;
+
+
+
+}
+
+function checkEmailInput() {
+    if (emailRegax.test($(inputs[1]).val())) {
+        $(inputs[1]).removeClass("is-invalid");
+        $(inputs[1]).addClass("is-valid");
+        if (!$(paraError[1]).hasClass(`d-none`)) {
+            $(paraError[1]).addClass("d-none");
+        }
+        return true;
+
+    }
+    else {
+        $(inputs[1]).addClass("is-invalid");
+        if ($(paraError[1]).hasClass(`d-none`)) {
+            $(paraError[1]).removeClass("d-none");
         }
         return false;
-    
-   
+    }
+
 
 }
+function checkPhoneInput() {
 
-function checkEmailInput(){
-        if (emailRegax.test($(inputs[1]).val())) {
-            $(inputs[1]).removeClass("is-invalid");
-            $(inputs[1]).addClass("is-valid");
-          if (!$(paraError[1]).hasClass(`d-none`)) {
-                $(paraError[1]).addClass("d-none");
-            }
-            return true; 
-
-        }
-        else {
-            $(inputs[1]).addClass("is-invalid");
-            if ($(paraError[1]).hasClass(`d-none`)) {
-                $(paraError[1]).removeClass("d-none");
-            }
-            return false;
-        }
-    
-
-}
-function checkPhoneInput(){
-    
     if (phoneRegax.test($(inputs[2]).val())) {
 
         $(inputs[2]).removeClass("is-invalid")
@@ -597,7 +632,7 @@ function checkPhoneInput(){
         if (!$(paraError[2]).hasClass(`d-none`)) {
             $(paraError[2]).addClass("d-none");
         }
-        return true; 
+        return true;
 
     }
     else {
@@ -608,15 +643,15 @@ function checkPhoneInput(){
         return false;
     }
 }
-function checkAgeInput(){
+function checkAgeInput() {
     if (ageRegax.test($(inputs[3]).val())) {
 
         $(inputs[3]).removeClass("is-invalid");
-         $(inputs[3]).addClass("is-valid");
+        $(inputs[3]).addClass("is-valid");
         if (!$(paraError[3]).hasClass(`d-none`)) {
             $(paraError[3]).addClass("d-none");
         }
-        return true; 
+        return true;
 
     }
     else {
@@ -626,28 +661,28 @@ function checkAgeInput(){
         }
         return false;
     }
-} 
-function checkPasswordInput(){
+}
+function checkPasswordInput() {
     if (passwordRegax.test($(inputs[4]).val())) {
 
-                $(inputs[4]).removeClass("is-invalid");
-                $(inputs[4]).addClass("is-valid");
-                if (!$(paraError[4]).hasClass(`d-none`)) {
-                    $(paraError[4]).addClass("d-none");
-                }
-                return true; 
-    
-            }
-            else {
-                $(inputs[4]).addClass("is-invalid");
-                if ($(paraError[4]).hasClass(`d-none`)) {
-                    $(paraError[4]).removeClass("d-none");
-                }
-                return false;
-            }
-    
+        $(inputs[4]).removeClass("is-invalid");
+        $(inputs[4]).addClass("is-valid");
+        if (!$(paraError[4]).hasClass(`d-none`)) {
+            $(paraError[4]).addClass("d-none");
+        }
+        return true;
+
+    }
+    else {
+        $(inputs[4]).addClass("is-invalid");
+        if ($(paraError[4]).hasClass(`d-none`)) {
+            $(paraError[4]).removeClass("d-none");
+        }
+        return false;
+    }
+
 }
-function checkRepasswordInput(){
+function checkRepasswordInput() {
     if ($(inputs[4]).val() == $(inputs[5]).val()) {
 
         $(inputs[5]).removeClass("is-invalid")
@@ -655,7 +690,7 @@ function checkRepasswordInput(){
         if (!$(paraError[5]).hasClass(`d-none`)) {
             $(paraError[5]).addClass("d-none");
         }
-        return true; 
+        return true;
 
     }
 
