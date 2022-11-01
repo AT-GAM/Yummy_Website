@@ -1,7 +1,7 @@
 :root{
     --primiaryFontSize:30px;
     --primiaryColor : white ;
-    --secondryColor : #E5633E ;
+    --secondryColor : black ;
     
 
 }
@@ -21,6 +21,8 @@ body{
 }
 .bachGroundlayer{
     z-index: -2;
+    background-color: rgba(0, 0, 0,0.7);
+
 
 }
 /* ---------------------------------------Waiting Layer------------------------------------------------*/
@@ -36,17 +38,33 @@ body{
 
 nav{
     z-index: 99999999999;
-}
-nav ul a{
-    text-decoration: none;
-    color: var(--primiaryColor);
-}
 
+}
+nav i{
+    color: var(--secondryColor);
+}
+nav .disappear{
+    background-color: var(--secondryColor);
+}
+nav .appear{
+    background-color:var(--primiaryColor) ;
+    color :var(--secondryColor) ;  }
+nav ul a ,nav label{
+    color :var(--primiaryColor) ;
+
+    text-decoration: none;
+}
+nav .SocialIcons div{
+    background-color: var(--primiaryColor);
+}
 nav   a:hover {
     color: var(--primiaryColor) ;
-}
+} 
 nav .appear .openIcons span,nav .appear .openIcons  i{
     cursor: pointer;
+}
+nav p {
+    color: var(--primiaryColor);
 }
 
 /* Main page */
@@ -58,6 +76,21 @@ nav .appear .openIcons span,nav .appear .openIcons  i{
     right: 0%;
     background-color: rgba(0, 0, 0, .1);
     z-index: 999;
+}
+.mainShow h2 {
+color: var(--primiaryColor);
+ 
+}
+.mainShow .cardArea{
+
+    border: 3px solid var(--primiaryColor);
+}
+.mainShow .post{
+    color: var(--primiaryColor);
+}
+.mainShow figcaption{
+    background-color:rgba(255, 255, 255,0.6);
+    color: var(--secondryColor);
 }
 /* ---------------------------------------figure caption------------------------------------------------ */
 
@@ -81,3 +114,11 @@ section.mainPage figure:hover figcaption{
 section .post , section figure{
     cursor: pointer;
 }
+/* ---------------------------------------edition for light mode ------------------------------------------------ */
+.search input ,.contact input {
+    color: black;
+    background-color: white;
+}
+
+
+

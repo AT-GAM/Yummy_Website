@@ -334,7 +334,8 @@ function getMeal(idMeal) {
 
 
         //build html code 
-        foodItemsDiv.innerHTML = `<div class="col-md-4 col-sm-12 text-white text-center " >
+        foodItemsDiv.innerHTML =
+         `<div class="col-md-4 col-sm-12 text-white text-center " >
             <img class="w-100" src="${meal.strMealThumb}" alt="${meal.strMeal}  ">
             <h2>   ${meal.strMeal}            </h2>
 
@@ -376,10 +377,10 @@ function displayFoods(arrJasonApi) {
 
     for (const meal of arrJasonApi.meals) {
         const foodDiv = `
-        <div class="col-lg-3 col-md-4 col-sm-6 ">
-        <figure onclick="getMeal(${meal.idMeal})" class="figure position-relative  overflow-hidden    ">
+        <div class="col-lg-3  col-md-4 col-sm-6 ">
+        <figure onclick="getMeal(${meal.idMeal})" class="figure position-relative shadow  overflow-hidden    ">
             <img src="${meal.strMealThumb}" class="figure-img img-fluid rounded-4  m-0" alt="${meal.strMeal}">
-            <figcaption class="figure-caption text-black bg-white bg-opacity-50 fa-2x  d-flex align-items-center  "><h4>${meal.strMeal}</h4></figcaption>
+            <figcaption class="figure-caption rounded-4  bg-opacity-50 fa-2x  d-flex align-items-center  "><h4>${meal.strMeal}</h4></figcaption>
           </figure>
           </div>    
         `;
@@ -396,11 +397,11 @@ function displayCatagories(arrJasonApi) {
 
     for (const Category of arrJasonApi.categories) {
         const foodDiv = `
-        <div class="col-lg-3 col-md-4 col-sm-6 ">
-        <figure onclick="getCategory('${Category.strCategory}')" class="figure position-relative  overflow-hidden    ">
+        <div class="col-lg-3  col-md-4 col-sm-6 ">
+        <figure onclick="getCategory('${Category.strCategory}')" class="figure position-relative shadow  overflow-hidden    ">
             <img src="${Category.strCategoryThumb}" class="figure-img img-fluid rounded rounded-4 m-0" alt="${Category.strCategory}">
 
-            <figcaption class="figure-caption text-black bg-white bg-opacity-50  text-center fa-1x  ">
+            <figcaption class="figure-caption  bg-opacity-50 rounded-4  text-center fa-1x  ">
             <h4>${Category.strCategory}</h4>
             <p class="w-100">${Category.strCategoryDescription.split(" ").slice(0, 20).join(" ")}</p>
             
@@ -427,12 +428,12 @@ function displayIngredient(arrJasonApi) {
     for (let i = 0; i < 21; i++) {
         const foodDiv = `
             
-        <div class="col-sm-6  overflow-hidden text-center col-lg-3 my-3 ">
-        <div style="height:300px "  onclick="getByIngredient('${arrJasonApi.meals[i].strIngredient}')" class="movie position-relative">
+        <div class="col-sm-6  overflow-hidden text-center col-lg-3  my-3 ">
+        <div style="height:300px "  onclick="getByIngredient('${arrJasonApi.meals[i].strIngredient}')" class="  position-relative">
             <div class="post ">
                 <i class="fa-solid text-warning  fa-utensils mt-2 fa-3x"></i>
-                <h2 class="text-white">${arrJasonApi.meals[i].strIngredient}</h2>
-                <p class="text-white">${(arrJasonApi.meals[i].strDescription) ? `${arrJasonApi.meals[i].strDescription.split(" ").slice(0, 20).join(" ")}` : ""} </p>
+                <h2 class="">${arrJasonApi.meals[i].strIngredient}</h2>
+                <p class="">${(arrJasonApi.meals[i].strDescription) ? `${arrJasonApi.meals[i].strDescription.split(" ").slice(0, 20).join(" ")}` : ""} </p>
             </div>
         </div>
     </div>   
@@ -452,11 +453,11 @@ function displayArea(arrJasonApi) {
     for (const meal of arrJasonApi.meals) {
         const foodDiv = `
             
-        <div   class="col-sm-6 text-center col-lg-3 my-3">
-            <div  style="height:250px " onclick="getByArea('${meal.strArea}')"  class=" rounded-4 d-flex justify-content-center align-items-center border-3 border border-white py-3 ">
+        <div   class="col-sm-6 text-center col-lg-3  my-3">
+            <div  style="height:250px " onclick="getByArea('${meal.strArea}')"  class=" shadow rounded-4 d-flex justify-content-center align-items-center  cardArea   py-3 ">
                 <div  class="post ">
                     <i class=" fa-solid fa-earth-africa text-info mb-2  fa-3x"></i>
-                    <h2 class="text-white">${meal.strArea}</h2>
+                    <h2 class="">${meal.strArea}</h2>
                 </div>
             </div>
         </div>  
@@ -506,11 +507,10 @@ function searchByName(searchValue) {
 /* validation of contacts */
 // Regax variable
 const nameRegax = /^[a-zA-Z ]{3,30}$/;
-const emailRegax = /^[a-zA-Z0-9.!#$%&'*+/=?^_{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+const emailRegax = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const phoneRegax = /^(01|201|\+201)[0125][0-9]{8}$/;
 const passwordRegax = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 const ageRegax = /^([1-9]|[1-9][0-9]|100)$/;
-let flagButton = false;
 
 
 let inputs = $(".contact .row input");
@@ -533,7 +533,7 @@ $(".contact").keyup(function () {
     })
 
     $(inputs[2]).focusout(function () {
-        this.type = "number";
+        
         if (!$(inputs[2]).val() == "") {
             checkPhoneInput();
         }
@@ -719,6 +719,62 @@ function checkRepasswordInput() {
 
 
 
+/* -----------------------------------------light mode and night mode-------------------------------------------------- */
+
+let flagButton = true;
+
+$("#flexSwitchCheckChecked").click(function(){
+
+    console.log(this.value)
+
+if(flagButton){
+    $("nav i").css("color","white");
+    $(" nav .disappear").css("backgroundColor","white");
+    $("nav .appear").css("backgroundColor","black");
+    $("nav .appear ").css("color","white");
+    $("nav ul a ,nav label ,nav p").css("color","black");
+    $("nav .SocialIcons div").css("backgroundColor","black");
+    $(".bachGroundlayer").css("backgroundColor"," rgba(255, 255, 255, .7)");
+    $(".search input ,.contact input").css("backgroundColor"," black");
+    $(".search input ,.contact input").css("color"," white");
+    $(".contact h2").css("color"," black");
+    $(".mainShow h2").css("color"," black");
+    $(".mainShow .cardArea").css("borderColor"," black");
+    $(".mainShow .post").css("color"," black");
+    $(".mainShow figcaption").css("backgroundColor"," rgba(0, 0, 0,0.6) ");
+    $(".mainShow figcaption").css("color"," white");
+
+
+    flagButton=false;
+
+
+}
+else {
+    $("nav i").css("color","black");
+    $(" nav .disappear").css("backgroundColor","black");
+    $("nav .appear").css("backgroundColor","white");
+    $("nav .appear").css("color","black");
+    $("nav ul a ,nav label ,nav p").css("color","white");
+    $("nav .SocialIcons div").css("backgroundColor","white");
+    $(".bachGroundlayer").css("backgroundColor"," rgba(0, 0, 0,0.7)")
+    $(".search input ,.contact input").css("backgroundColor"," white");
+    $(".search input ,.contact input").css("color"," black");
+    $(".contact h2").css("color"," white");
+    $(".mainShow h2").css("color"," white");
+    $(".mainShow .cardArea").css("borderColor"," white");
+    $(".mainShow .post").css("color"," white");
+    $(".mainShow figcaption").css("backgroundColor","rgba(255, 255, 255,0.6)");
+    $(".mainShow figcaption").css("color"," black");
+
+
+    flagButton=true;
+
+
+}
 
 
 
+
+
+
+})
