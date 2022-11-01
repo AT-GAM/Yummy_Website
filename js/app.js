@@ -747,7 +747,6 @@ if(flagButton){
     $(".imagePart").css("color","black")
     $(".desckPart").css("color","black")
     flagButton=false;
-    console.log(flagButton);
 
 
 }
@@ -771,7 +770,6 @@ else {
     $(".imagePart").css("color","white")
     $(".desckPart").css("color","white")
     flagButton=true;
-    console.log(flagButton);
 
 
 
