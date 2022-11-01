@@ -335,16 +335,16 @@ function getMeal(idMeal) {
 
         //build html code 
         foodItemsDiv.innerHTML =
-         `<div class="col-md-4 col-sm-12 text-white text-center " >
+         `<div style="color:${(flagButton)? "white;" : "black;"}" class="col-md-4 imagePart col-sm-12  text-center " >
             <img class="w-100" src="${meal.strMealThumb}" alt="${meal.strMeal}  ">
             <h2>   ${meal.strMeal}            </h2>
 
         </div>
-        <div class="col-md-8 col-sm-12 text-white" >
+        <div style="color:${(flagButton)? "white;" : "black;"} "class="col-md-8 desckPart col-sm-12 " >
             <h3>Instructions</h3>
             <p>${meal.strInstructions}</p>
-             <p><span class="fw-bold" >Area : </span>${meal.strArea}</p>  
-             <p><span class="fw-bold" >Category : </span>${meal.strCategory}</p>
+             <p><span  class="fw-bold" >Area : </span>${meal.strArea}</p>  
+             <p><span  class="fw-bold" >Category : </span>${meal.strCategory}</p>
              <p class="fw-bold" >Recipes : </p>
              <div class="recipes d-flex flex-wrap">
              ${recipes}
@@ -377,10 +377,10 @@ function displayFoods(arrJasonApi) {
 
     for (const meal of arrJasonApi.meals) {
         const foodDiv = `
-        <div class="col-lg-3  col-md-4 col-sm-6 ">
+        <div style="color:${(flagButton)? "white;" : "black;"}" class="col-lg-3  col-md-4 col-sm-6 ">
         <figure onclick="getMeal(${meal.idMeal})" class="figure position-relative shadow  overflow-hidden    ">
             <img src="${meal.strMealThumb}" class="figure-img img-fluid rounded-4  m-0" alt="${meal.strMeal}">
-            <figcaption class="figure-caption rounded-4  bg-opacity-50 fa-2x  d-flex align-items-center  "><h4>${meal.strMeal}</h4></figcaption>
+            <figcaption style=" color:${(flagButton)? "balck;" : "white;" } background-color: ${(flagButton)? "rgba(255, 255, 255,0.6);" : "rgba(0, 0, 0,0.6);" } " class="figure-caption rounded-4  bg-opacity-50 fa-2x  d-flex align-items-center  "><h4>${meal.strMeal}</h4></figcaption>
           </figure>
           </div>    
         `;
@@ -397,11 +397,11 @@ function displayCatagories(arrJasonApi) {
 
     for (const Category of arrJasonApi.categories) {
         const foodDiv = `
-        <div class="col-lg-3  col-md-4 col-sm-6 ">
+        <div style="color:${(flagButton)? "white;" : "black;"}" class="col-lg-3  col-md-4 col-sm-6 ">
         <figure onclick="getCategory('${Category.strCategory}')" class="figure position-relative shadow  overflow-hidden    ">
             <img src="${Category.strCategoryThumb}" class="figure-img img-fluid rounded rounded-4 m-0" alt="${Category.strCategory}">
 
-            <figcaption class="figure-caption  bg-opacity-50 rounded-4  text-center fa-1x  ">
+            <figcaption style=" color:${(flagButton)? "balck;" : "white;" } background-color: ${(flagButton)? "rgba(255, 255, 255,0.6);" : "rgba(0, 0, 0,0.6);" } " class="figure-caption  bg-opacity-50 rounded-4  text-center fa-1x  ">
             <h4>${Category.strCategory}</h4>
             <p class="w-100">${Category.strCategoryDescription.split(" ").slice(0, 20).join(" ")}</p>
             
@@ -428,7 +428,7 @@ function displayIngredient(arrJasonApi) {
     for (let i = 0; i < 21; i++) {
         const foodDiv = `
             
-        <div class="col-sm-6  overflow-hidden text-center col-lg-3  my-3 ">
+        <div style="color:${(flagButton)? "white;" : "black;"}" class="col-sm-6  overflow-hidden text-center col-lg-3  my-3 ">
         <div style="height:300px "  onclick="getByIngredient('${arrJasonApi.meals[i].strIngredient}')" class="  position-relative">
             <div class="post ">
                 <i class="fa-solid text-warning  fa-utensils mt-2 fa-3x"></i>
@@ -453,8 +453,9 @@ function displayArea(arrJasonApi) {
     for (const meal of arrJasonApi.meals) {
         const foodDiv = `
             
-        <div   class="col-sm-6 text-center col-lg-3  my-3">
-            <div  style="height:250px " onclick="getByArea('${meal.strArea}')"  class=" shadow rounded-4 d-flex justify-content-center align-items-center  cardArea   py-3 ">
+    
+    <div  style="color:${(flagButton)? "white;" : "black;"} "  class="col-sm-6 text-center col-lg-3  my-3">
+            <div  style="height:250px; border: 3px solid ${(flagButton)? "white;" : "black;"} " onclick="getByArea('${meal.strArea}')"  class=" shadow rounded-4 d-flex justify-content-center align-items-center  cardArea   py-3 ">
                 <div  class="post ">
                     <i class=" fa-solid fa-earth-africa text-info mb-2  fa-3x"></i>
                     <h2 class="">${meal.strArea}</h2>
@@ -725,7 +726,6 @@ let flagButton = true;
 
 $("#flexSwitchCheckChecked").click(function(){
 
-    console.log(this.value)
 
 if(flagButton){
     $("nav i").css("color","white");
@@ -733,6 +733,7 @@ if(flagButton){
     $("nav .appear").css("backgroundColor","black");
     $("nav .appear ").css("color","white");
     $("nav ul a ,nav label ,nav p").css("color","black");
+    $("nav label").html("light mode");
     $("nav .SocialIcons div").css("backgroundColor","black");
     $(".bachGroundlayer").css("backgroundColor"," rgba(255, 255, 255, .7)");
     $(".search input ,.contact input").css("backgroundColor"," black");
@@ -743,9 +744,10 @@ if(flagButton){
     $(".mainShow .post").css("color"," black");
     $(".mainShow figcaption").css("backgroundColor"," rgba(0, 0, 0,0.6) ");
     $(".mainShow figcaption").css("color"," white");
-
-
+    $(".imagePart").css("color","black")
+    $(".desckPart").css("color","black")
     flagButton=false;
+    console.log(flagButton);
 
 
 }
@@ -755,6 +757,7 @@ else {
     $("nav .appear").css("backgroundColor","white");
     $("nav .appear").css("color","black");
     $("nav ul a ,nav label ,nav p").css("color","white");
+    $("nav label").html("Dark mode");
     $("nav .SocialIcons div").css("backgroundColor","white");
     $(".bachGroundlayer").css("backgroundColor"," rgba(0, 0, 0,0.7)")
     $(".search input ,.contact input").css("backgroundColor"," white");
@@ -765,9 +768,11 @@ else {
     $(".mainShow .post").css("color"," white");
     $(".mainShow figcaption").css("backgroundColor","rgba(255, 255, 255,0.6)");
     $(".mainShow figcaption").css("color"," black");
-
-
+    $(".imagePart").css("color","white")
+    $(".desckPart").css("color","white")
     flagButton=true;
+    console.log(flagButton);
+
 
 
 }
