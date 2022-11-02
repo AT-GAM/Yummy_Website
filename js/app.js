@@ -749,8 +749,9 @@ if(flagButton){
     $(".mainShow .post").css("color"," black");
     $(".mainShow figcaption").css("backgroundColor"," rgba(0, 0, 0,0.6) ");
     $(".mainShow figcaption").css("color"," white");
-    $(".imagePart").css("color","black")
-    $(".desckPart").css("color","black")
+    $(".imagePart").css("color","black");
+    $(".desckPart").css("color","black");
+    $("body").css("backgroundImage"," url( Images/istockphoto-1220584431-612x612.jpg)")
     flagButton=false;
 
 
@@ -774,6 +775,7 @@ else {
     $(".mainShow figcaption").css("color"," black");
     $(".imagePart").css("color","white")
     $(".desckPart").css("color","white")
+    $("body").css("backgroundImage"," url( Images/54088672-healthy-food-background-studio-photo-of-different-fruits-and-vegetables-on-white-wooden-table-high-r.webp)")
     flagButton=true;
 
 
