@@ -70,6 +70,7 @@ $("body").ready(function () {
 
     // navBar links event to 
     $("#Home").click(goHome);
+    $("nav .appear img").click(goHome);
     $("#Search").click(goSearch);
     $("#Category").click(goCategories);
     $("#Area").click(goArea);
@@ -403,7 +404,7 @@ function displayCatagories(arrJasonApi) {
 
             <figcaption style=" color:${(flagButton)? "balck;" : "white;" } background-color: ${(flagButton)? "rgba(255, 255, 255,0.6);" : "rgba(0, 0, 0,0.6);" } " class="figure-caption  bg-opacity-50 rounded-4  text-center fa-1x  ">
             <h4>${Category.strCategory}</h4>
-            <p class="w-100">${Category.strCategoryDescription.split(" ").slice(0, 20).join(" ")}</p>
+            <p class="w-100">${Category.strCategoryDescription.split(" ").slice(0, 20).join(" ")}....</p>
             
             </figcaption>
 
@@ -431,9 +432,10 @@ function displayIngredient(arrJasonApi) {
         <div style="color:${(flagButton)? "white;" : "black;"}" class="col-sm-6  overflow-hidden text-center col-lg-3  my-3 ">
         <div style="height:300px "  onclick="getByIngredient('${arrJasonApi.meals[i].strIngredient}')" class="  position-relative">
             <div class="post ">
-                <i class="fa-solid text-warning  fa-utensils mt-2 fa-3x"></i>
+            <div style="width:100px ; height:100px" class="rounded rounded-circle m-auto justify-content-center align-items-center d-flex border border-2 border-warning ">
+                <i class="fa-solid text-warning  fa-utensils mt-2 fa-3x"></i></div>
                 <h2 class="">${arrJasonApi.meals[i].strIngredient}</h2>
-                <p class="">${(arrJasonApi.meals[i].strDescription) ? `${arrJasonApi.meals[i].strDescription.split(" ").slice(0, 20).join(" ")}` : ""} </p>
+                <p class="">${(arrJasonApi.meals[i].strDescription) ? `${arrJasonApi.meals[i].strDescription.split(" ").slice(0, 20).join(" ")}` : ""}.....  </p>
             </div>
         </div>
     </div>   
@@ -451,13 +453,15 @@ function displayArea(arrJasonApi) {
 
 
     for (const meal of arrJasonApi.meals) {
+        // border: 3px solid ${(flagButton)? "white;" : "black;"}
         const foodDiv = `
             
     
     <div  style="color:${(flagButton)? "white;" : "black;"} "  class="col-sm-6 text-center col-lg-3  my-3">
-            <div  style="height:250px; border: 3px solid ${(flagButton)? "white;" : "black;"} " onclick="getByArea('${meal.strArea}')"  class=" shadow rounded-4 d-flex justify-content-center align-items-center  cardArea   py-3 ">
+            <div  style="height:250px;" onclick="getByArea('${meal.strArea}')"  class=" shadow rounded-4 d-flex justify-content-center align-items-center  cardArea   py-3 ">
                 <div  class="post ">
-                    <i class=" fa-solid fa-earth-africa text-info mb-2  fa-3x"></i>
+            <div style="width:100px ; height:100px" class="rounded rounded-circle m-auto justify-content-center align-items-center d-flex border border-2 border-info ">
+                    <i class=" fa-solid fa-earth-africa text-info   fa-3x"></i></div>
                     <h2 class="">${meal.strArea}</h2>
                 </div>
             </div>
@@ -515,6 +519,7 @@ const ageRegax = /^([1-9]|[1-9][0-9]|100)$/;
 
 
 let inputs = $(".contact .row input");
+inputs[2].maxLength="11";
 let paraError = $(".contact .row p");
 $(".contact").keyup(function () {
     $(inputs[0]).focusout(
@@ -533,8 +538,7 @@ $(".contact").keyup(function () {
         }
     })
 
-    $(inputs[2]).focusout(function () {
-        
+    $(inputs[2]).focusout(function () {        
         if (!$(inputs[2]).val() == "") {
             checkPhoneInput();
         }
@@ -547,15 +551,16 @@ $(".contact").keyup(function () {
         }
     })
 
-    $(inputs[4]).focusout(function () {
+    $(inputs[4]).keyup(function () {
         this.type = "password";
+
 
         if (!$(inputs[4]).val() == "") {
             checkPasswordInput();
         }
     })
 
-    $(inputs[5]).focusout(function () {
+    $(inputs[5]).keyup(function () {
         this.type = "password";
 
         if (!$(inputs[5]).val() == "") {
@@ -740,7 +745,7 @@ if(flagButton){
     $(".search input ,.contact input").css("color"," white");
     $(".contact h2").css("color"," black");
     $(".mainShow h2").css("color"," black");
-    $(".mainShow .cardArea").css("borderColor"," black");
+    // $(".mainShow .cardArea").css("borderColor"," black");
     $(".mainShow .post").css("color"," black");
     $(".mainShow figcaption").css("backgroundColor"," rgba(0, 0, 0,0.6) ");
     $(".mainShow figcaption").css("color"," white");
@@ -763,7 +768,7 @@ else {
     $(".search input ,.contact input").css("color"," black");
     $(".contact h2").css("color"," white");
     $(".mainShow h2").css("color"," white");
-    $(".mainShow .cardArea").css("borderColor"," white");
+    // $(".mainShow .cardArea").css("borderColor"," white");
     $(".mainShow .post").css("color"," white");
     $(".mainShow figcaption").css("backgroundColor","rgba(255, 255, 255,0.6)");
     $(".mainShow figcaption").css("color"," black");

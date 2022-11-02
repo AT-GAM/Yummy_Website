@@ -60,7 +60,7 @@ nav .SocialIcons div{
 nav   a:hover {
     color: var(--primiaryColor) ;
 } 
-nav .appear .openIcons span,nav .appear .openIcons  i{
+nav .appear .openIcons span,nav .appear .openIcons  i,nav .appear img{
     cursor: pointer;
 }
 nav p {
